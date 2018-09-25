@@ -8,5 +8,5 @@ describe('Initial test setup', () => {
     const text = wrapper.find('h1').text();
 
     expect(text).toEqual('Hello, World!');
-  })
-})
+  });
+});
