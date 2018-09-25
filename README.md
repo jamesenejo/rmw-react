@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jamesenejo/rmw-frontend.svg?branch=develop)](https://travis-ci.org/jamesenejo/rmw-frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/c06cfbcce3b60a24a545/maintainability)](https://codeclimate.com/github/jamesenejo/rmw-frontend/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/c06cfbcce3b60a24a545/test_coverage)](https://codeclimate.com/github/jamesenejo/rmw-frontend/test_coverage)
+[![Build Status](https://travis-ci.org/jamesenejo/rmw-frontend.svg?branch=develop)](https://travis-ci.org/jamesenejo/rmw-frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/c06cfbcce3b60a24a545/maintainability)](https://codeclimate.com/github/jamesenejo/rmw-frontend/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c06cfbcce3b60a24a545/test_coverage)](https://codeclimate.com/github/jamesenejo/rmw-frontend/test_coverage)
 
 This is the frontend implementation of the Ride-My-Way API at http://enjames-ridemyway.herokuapp.com.
 
