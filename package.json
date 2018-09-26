@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "nyc --reporter=lcov jest",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --hot --inline --open"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1"
   }
 }

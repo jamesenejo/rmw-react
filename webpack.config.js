@@ -20,15 +20,16 @@ const webpackConfig = {
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    path: path.resolve(__dirname, "/"),
+    publicPath: "/",
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, "client", "public/"),
+    contentBase: path.join(__dirname, "client"),
     port: 8000,
     publicPath: "http://localhost:8000/dist",
-    hotOnly: true
+    hotOnly: true,
+    historyApiFallback: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };
