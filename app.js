@@ -7,7 +7,7 @@ import webpackDevConfig from './webpack.config.dev';
 import webpackProdConfig from './webpack.config.prod';
 
 const app = express();
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 8000;
 const env = process.env.NODE_ENV || 'development';
 const config = env === 'production' ? webpackProdConfig : webpackDevConfig;
 const compiler = webpack(config);
@@ -17,8 +17,8 @@ app.use(webpackDevMiddleware(compiler, {
   output: config.output.path
 }));
 app.use(webpackHotMiddleware(compiler));
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, "client")));
 
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'index.html')));
 
-app.listen(port, () => console.log(port, '3000 active'));
+app.listen(port, () => console.log(port, ' active'));

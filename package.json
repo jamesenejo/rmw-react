@@ -1,5 +1,5 @@
 {
-  "name": "rmw-frontend",
+  "name": "rmw-react",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -14,7 +14,7 @@
     "heroku-postbuild": "npm run build",
     "start": "node --require @babel/register app.js",
     "start:dev": "NODE_ENV=development node --require @babel/register app.js",
-    "test": "nyc --reporter=lcov jest"
+    "test": "nyc --reporter=lcov jest --coverage"
   },
   "author": "Enejo James",
   "license": "ISC",
@@ -30,11 +30,13 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
+    "jest-transform-stub": "^1.0.0",
     "nyc": "^13.0.1"
   },
   "dependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
@@ -44,7 +46,9 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^1.0.0",
     "express": "^4.16.3",
+    "file-loader": "^2.0.0",
     "node-sass": "^4.9.3",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
@@ -60,5 +64,10 @@
     "webpack-dev-server": "^3.1.8",
     "webpack-hot-middleware": "^2.24.2",
     "webpack-merge": "^4.1.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "babel-jest"
+    }
   }
 }

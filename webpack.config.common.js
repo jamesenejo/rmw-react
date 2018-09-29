@@ -1,7 +1,7 @@
 const path = require('path');
 
 const webpackCommonConfig = {
-  entry: "./client/index.js",
+  entry: "./client/index.jsx",
   module: {
     rules: [
       {
@@ -13,6 +13,15 @@ const webpackCommonConfig = {
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
       }
     ]
   },
