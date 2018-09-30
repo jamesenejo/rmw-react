@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import SignupForm from './SignupForm';
+import MessageDiv from '../utils/MessageDiv';
 import isLoggedInAction from '../../actions/isLoggedInAction';
-import '../../styles/css/general.scss';
 import '../../styles/css/sign-up.scss';
 
 class Signup extends Component {
@@ -11,8 +14,9 @@ class Signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
+    isSuccess: false,
     loading: false,
-    error: []
+    messages: []
   };
 
   handleChange = (event) => {
@@ -22,6 +26,15 @@ class Signup extends Component {
     this.setState({
       [name]: value
     });
+  }
+
+  updateStateMessages = (array, bool) => {
+    const loading = bool || false;
+
+    this.setState({ messages: array, loading });
+    return setTimeout(() => {
+      this.setState({ messages: [] });
+    }, 4000);
   }
 
   validateFormData = (formData) => {
@@ -34,7 +47,10 @@ class Signup extends Component {
       errors.push('First name is required');
     }
     if (!email || email.trim() === '') {
-      errors.push('Invlalid email');
+      errors.push('Invalid email');
+    }
+    if (!password || password.trim() === '') {
+      errors.push('Password is required');
     }
     if (password !== confirmPassword) {
       errors.push('Passwords do not match');
@@ -51,10 +67,10 @@ class Signup extends Component {
     // Run validations
     const outcome = this.validateFormData(this.state);
     // If errors exist, update state
-    if (typeof outcome === 'object') {
-      return this.setState({ error: outcome }, () => console.log(this.state.loading, '&', this.state.error));
+    if (outcome) {
+      return this.updateStateMessages(outcome);
     }
-    console.log('Sending user signup request...');
+    // else send signup request
     this.setState({ loading: true }, () => this.sendSignupRequest(this.state));
   }
 
@@ -68,7 +84,7 @@ class Signup extends Component {
       firstname, email, password, confirmPassword
     };
 
-    fetch('https://api-rmw.herokuapp.com/api/v1/auth/signup', {
+    window.fetch('https://api-rmw.herokuapp.com/api/v1/auth/signup', {
       method: 'POST',
       body: JSON.stringify(signupData),
       headers: {
@@ -81,39 +97,65 @@ class Signup extends Component {
       .then(res => {
         if (res.status === 'success') {
           dispatch(isLoggedInAction({ isLoggedIn: true }));
-          window.location.href = 'https://rmw-react.herokuapp.com';
+          this.setState({ messages: [res.message], isSuccess: true }, () => {
+            window.location.href = 'https://rmw-react.herokuapp.com';
+          });
         }
+        return this.updateStateMessages([res.message]);
       })
-      .catch(error => this.setState({ loading: false }, () => console.log(error)));
+      .catch(error => this.updateStateMessages([error]));
   }
 
   render() {
     const {
-      firstname, email, password, confirmPassword, loading
+      firstname, email, password, confirmPassword, loading, messages, isSuccess
     } = this.state;
 
     return (
       <div className="banner banner-signup">
         <div className="tint">
           <nav className="navigation-bar">
-            <a className="navigation-brand" href="index.html">
+            <Link to="/" className="navigation-brand">
               <img src="../../assets/img/logormww.png" alt="Logo" />
-            </a>
+            </Link>
           </nav>
-          <SignupForm
-            onChange={this.handleChange}
-            onClick={this.handleSubmit}
-            firstname={firstname}
-            email={email}
-            password={password}
-            confirmPassword={confirmPassword}
-            loading={loading}
+          <MessageDiv
+            messages={messages}
+            isSuccess={isSuccess}
+            style={{ opacity: messages.lenth ? '0' : '1' }}
           />
+          <div className="content-wrapper">
+            <div className="form">
+              <div className="intro">
+                <h2>Sign Up</h2>
+              </div>
+              <SignupForm
+                onChange={this.handleChange}
+                onClick={this.handleSubmit}
+                firstname={firstname}
+                email={email}
+                password={password}
+                confirmPassword={confirmPassword}
+                loading={loading}
+              />
+              <div className="intro">
+                <p>
+                  Already a user?
+                  <Link to="/login">Log in</Link>
+                   instead.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
+
+Signup.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state, ownProps) => ({
   isLoggedIn: state.isLoggedIn
