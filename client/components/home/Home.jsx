@@ -1,6 +1,5 @@
 import React from 'react';
 import HomeNav from './HomeNav';
-import '../../styles/css/master.scss';
 import '../../styles/css/ride-offer-general.scss';
 import '../../styles/css/index.scss';
 

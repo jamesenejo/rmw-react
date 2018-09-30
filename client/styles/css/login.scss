@@ -1,45 +1,44 @@
-.banner {
-    background-image: url('../../assets/img/login.jpg');
-}
-.tint {
+.banner-login {
+  background-image: url('../../assets/img/login.jpg');
+  .tint {
     position: relative;
     background-color: rgba(0,30,80,.8);
-}
-.navigation-bar {
-    display: block;
-    text-align: center;
-}
+    .navigation-bar {
+      display: block;
+      text-align: center;
+    }
+    /* --- Custom absolutely placed wrapper for login ---*/
+    .content-wrapper {
+      width: 400px;
+      padding: 30px 0 0;
+      border-radius: 10px;
+      .form-header {
+        border: none;
+      }
+      .form-body {
+        padding: 15px 20px 30px;
+        border: none;
+        .input-wrapper {
+          margin-right: 0;
+        }
+        .input-wrapper input::placeholder {
+          font-style: normal;
+          font-size: 18px;
+          font-weight: normal;
+        }
+        .btn-wrapper {
+          margin: auto;
+        }
+        .form-btn {
+          position: relative;
+        }
+      }
+      .form-footer a {
+        color: rgb(180,180,180) !important;
+      }
 
-/* --- Custom absolutely placed wrapper for login ---*/
-.content-wrapper {
-    width: 400px;
-    padding: 30px 0 0;
-    border-radius: 10px;
-}
-.input-wrapper {
-    margin-right: 0;
-}
-.input-wrapper input::placeholder {
-    font-style: normal;
-    font-size: 18px;
-    font-weight: normal;
-}
-.btn-wrapper {
-    margin: auto;
-}
-.form-header {
-    border: none;
-}
-.form-body {
-    padding: 15px 20px 30px;
-    border: none;
-}
-.form-footer a {
-    color: rgb(180,180,180) !important;
-}
-
-.form-btn {
-    position: relative;
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
