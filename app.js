@@ -1,4 +1,5 @@
 import express from 'express';
+import expressStaticGzip from 'express-static-gzip';
 import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -18,6 +19,16 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 app.use(express.static(path.join(__dirname, "client")));
+
+app.use('/', expressStaticGzip(path.join(__dirname, "client", 'dist'), {
+  enableBrotli: true
+}));
+
+// app.get('*.js', function (req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   next();
+// });
 
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'index.html')));
 
