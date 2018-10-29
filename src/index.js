@@ -1,12 +1,11 @@
 import '@babel/polyfill';
-import React from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
-import storage from './store';
+import store from './store';
 import App from './App';
-import FontLoading from 'Commons/FontLoading';
+
 // import "./styles/css/all-offers.scss";
 // import "./styles/css/create.scss";
 // import "./styles/css/dashboard.scss";
@@ -21,13 +20,9 @@ import FontLoading from 'Commons/FontLoading';
 // import "./styles/css/sign-up.scss";
 // import "./styles/css/upload.scss";
 
-const { store, persistor } = storage();
-
 render(
   <Provider store={store}>
-    <PersistGate loading={<FontLoading />} persistor={persistor}>
-      <App />
-    </PersistGate>
+    <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

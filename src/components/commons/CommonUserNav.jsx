@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import defaultAvatar from '../../assets/img/user-avatar.jpg';
 
 const CommonUserNav = (props) => {
   const { imgUrl } = props;
@@ -34,7 +35,7 @@ const CommonUserNav = (props) => {
           <div className="avatar">
             <img
               id="userAvatar"
-              src={imgUrl || "../../assets/img/user-avatar.jpg"}
+              src={imgUrl || defaultAvatar}
               alt="Avatar"
             />
           </div>

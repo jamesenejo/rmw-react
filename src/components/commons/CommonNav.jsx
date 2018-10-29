@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import logo from '../../assets/img/logormww.png';
 import CommonUserNav from './CommonUserNav';
 
 class CommonNav extends Component {
+  state = {
+    height: 'auto'
+  }
+
   componentDidMount() {
     window.addEventListener('resize', () => {
       if (window.screen.width <= 768) {
-        this.setState({ isMobile: true });
+        this.setState({ height: '0' });
       } else {
-        this.setState({ isMobile: false });
+        this.setState({ height: 'auto' });
       }
     });
-  }
-
-  state = {
-    height: '0',
-    isMobile: false
   }
 
   displayUlList = () => {
     const { height } = this.state;
 
-    if (height === '0') {
+    if (height === 'auto' || height === '0') {
       this.setState({ height: '170px' });
     } else {
       this.setState({ height: '0' });
@@ -31,12 +31,12 @@ class CommonNav extends Component {
 
   render() {
     const { isLoggedIn, imgUrl } = this.props;
-    const { height, isMobile } = this.state;
+    const { height } = this.state;
 
     return (
       <nav className="navigation-bar">
         <Link to="/" className="navigation-brand">
-          <img src="../../assets/img/logormww.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </Link>
         <button type="button" data-toggle="navigation" data-target="#navigationId" aria-controls="navigation" aria-expanded="false" className="navigation-toggler" id="navigationToggler" onClick={this.displayUlList}>
           <i className="fa fa-bars" />
