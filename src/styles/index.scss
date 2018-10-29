@@ -190,7 +190,7 @@ html,body {
 }
 @media screen and (max-width: 485px) {
     .navigation {
-        flex-basis: 50%;
+      flex: 1;
     }
 }
 @media screen and (max-width: 455px) {

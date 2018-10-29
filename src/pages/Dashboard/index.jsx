@@ -6,7 +6,6 @@ import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
 import FontLoading from 'Commons/FontLoading';
 import ProfileCompletenessIndicator from 'Commons/ProfileCompletenessIndicator';
-import isLoggedInAction from 'Actions/isLoggedInAction';
 import messagesAction from 'Actions/messagesAction';
 import updateUserAction from 'Actions/updateUserAction';
 import updateDashAction from 'Actions/updateDashAction';

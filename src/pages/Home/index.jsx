@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+// actions
+import loginCheck from 'Actions/loginCheck';
+
 // Relative imports
 import HomeNav from './HomeNav';
 import HomeContent from './HomeContent';
@@ -12,6 +15,13 @@ import 'Styles/index';
 
 class Home extends Component {
   state = {}
+
+  componentDidMount() {
+    const { checkLoginStatus } = this.props;
+
+    // updates global state with user's login status
+    checkLoginStatus();
+  }
 
   render() {
     const { isLoggedIn } = this.props;
@@ -28,11 +38,16 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  checkLoginStatus: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn
 });
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => ({
+  checkLoginStatus: () => dispatch(loginCheck())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
