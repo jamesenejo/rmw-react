@@ -8,10 +8,10 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/client/$1',
-    '^Actions(.*)$': '<rootDir>/client/store/actions$1',
-    '^Commons(.*)$': '<rootDir>/client/components/commons$1',
-    '^Helpers(.*)$': '<rootDir>/client/helpers$1',
-    '^Styles(.*)$': '<rootDir>/client/styles$1'
+    '^Actions(.*)$': '<rootDir>/src/store/actions$1',
+    '^Commons(.*)$': '<rootDir>/src/components/commons$1',
+    '^Helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^Styles(.*)$': '<rootDir>/src/styles$1'
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/']
 };

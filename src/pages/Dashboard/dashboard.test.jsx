@@ -3,9 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import Dashboard from './index';
-import storage from '../../store';
-
-const { store } = storage();
+import store from '../../store';
 
 
 describe('Home Tests', () => {
