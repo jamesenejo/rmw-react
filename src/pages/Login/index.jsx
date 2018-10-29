@@ -5,27 +5,29 @@ import PropTypes from 'prop-types';
 
 // Relative imports
 import MessageDiv from 'Commons/MessageDiv';
-import loginAction from 'Actions/loginAction';
+import authAction from 'Actions/authAction';
 import loadingAction from 'Actions/loadingAction';
 import messagesAction from 'Actions/messagesAction';
 import LoginForm from './LoginForm';
+import logo from '../../assets/img/logormww.png';
 
 // style imports
 import 'Styles/login.scss';
 
-
 class Login extends Component {
-  componentDidMount() {
-    if (window.location.search.substr(1) === 'rd') {
-      this.updateStateMessages(['Please login']);
-    }
-  }
-
   state = {
     email: '',
     password: '',
     isSuccess: false
   };
+
+  componentDidMount() {
+    // if user was redirected due to failed authentication
+    // display a login message
+    if (window.location.search.substr(1) === 'rd') {
+      this.updateStateMessages(['Please login']);
+    }
+  }
 
   handleChange = (event) => {
     const { target } = event;
@@ -49,8 +51,7 @@ class Login extends Component {
   validateFormData = (formData) => {
     const errors = [];
     const { email, password } = formData;
-    const emailRegex =
-    /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+    const emailRegex = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!emailRegex.test(email)) {
       errors.push('Valid email address required');
@@ -81,31 +82,8 @@ class Login extends Component {
     const { processLogin, loading, history } = this.props;
     const { email, password } = userData;
 
-    loading(true); // to activate loading spinner
-    processLogin({ email, password }, history);
-
-  //   window.fetch('http://localhost:7000/api/v1/auth/login', {
-  //     method: 'POST',
-  //     body: JSON.stringify(loginData),
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     credentials: 'include'
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       if (res.status === 'success') {
-  //         dispatch(isLoggedInAction({ isLoggedIn: true }));
-  //         this.setState({ isSuccess: true }, () => {
-  //           this.updateStateMessages([res.message]);
-  //           window.location.href = 'http://localhost:8000/dashboard';
-  //         });
-  //       }
-  //       this.updateStateMessages([res.message]);
-  //       return dispatch(isLoadingAction(false));
-  //     })
-  //     .catch(error => dispatch(messagesAction([error])));
+    loading(true); // activate loading spinner
+    return processLogin({ email, password }, history, 'login');
   }
 
   render() {
@@ -117,7 +95,7 @@ class Login extends Component {
         <div className="tint">
           <nav className="navigation-bar">
             <Link to="/" className="navigation-brand">
-              <img src="../../assets/img/logormww.png" alt="Logo" />
+              <img src={logo} alt="Logo" />
             </Link>
           </nav>
           <MessageDiv
@@ -152,22 +130,22 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.array.isRequired,
+  history: PropTypes.arrayOf.isRequired,
   processLogin: PropTypes.func.isRequired,
   loading: PropTypes.func.isRequired,
   updateMessages: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.arrayOf.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   isLoading: state.isLoading,
   messages: state.messages
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  processLogin: (userData, history) => dispatch(loginAction(userData, history)),
+const mapDispatchToProps = dispatch => ({
+  processLogin: (userData, history, authType) => dispatch(authAction(userData, history, authType)),
   loading: bool => dispatch(loadingAction(bool)),
   updateMessages: message => dispatch(messagesAction(message))
 });

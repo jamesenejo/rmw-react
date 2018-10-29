@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -79,6 +80,7 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
       excludeChunks: ['server']
-    })
+    }),
+    new CompressionPlugin()
   ]
 };

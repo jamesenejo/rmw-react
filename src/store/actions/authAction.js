@@ -1,7 +1,6 @@
 import constants from '../constants';
 import commonAction from './commonAction';
 
-const url = 'http://localhost:7000/api/v1/auth/login';
 const {
   LOGIN_STATUS,
   LOADING_STATUS,
@@ -9,19 +8,18 @@ const {
 } = constants;
 
 
-export default (userData, history) => dispatch => {
-  console.log(userData);
-  window.fetch(url, {
+export default (userData, history, authType) => (dispatch) => {
+  window.fetch(`http://localhost:7000/api/v1/auth/${authType}`, {
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     credentials: 'include'
   })
     .then(res => res.json())
-    .then(res => {
+    .then((res) => {
       if (res.status === 'fail') {
         // keep loading status false
         dispatch(commonAction(LOGIN_STATUS, false));
@@ -37,7 +35,7 @@ export default (userData, history) => dispatch => {
       dispatch(commonAction(LOGIN_STATUS, true));
       history.push('/dashboard');
     })
-    .catch(error => {
+    .catch(() => {
       dispatch(commonAction(LOGIN_STATUS, false)); // keep loading status false
       dispatch(commonAction(UPDATE_MESSAGES, ['An error occurred'])); // send error message
       dispatch(commonAction(LOADING_STATUS, false)); // turn off spinner

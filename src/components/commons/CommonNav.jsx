@@ -10,6 +10,12 @@ class CommonNav extends Component {
   }
 
   componentDidMount() {
+    // set height to zero on page load on a mobile screen
+    if (window.screen.width <= 768) {
+      this.setState({ height: '0' });
+    }
+
+    // listen for resizes and adjust height accordingly
     window.addEventListener('resize', () => {
       if (window.screen.width <= 768) {
         this.setState({ height: '0' });

@@ -1,21 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-// Component imports
-import Home from 'Pages/Home';
-import Dashboard from 'Pages/Dashboard';
-import Login from 'Pages/Login';
-import Signup from 'Pages/Signup';
+import listenForClickEvents from 'Helpers/listenForClickEvents';
+import asyncLoader from './components/asyncLoader';
 
 // styles imports
 import 'Styles/master';
 import 'Styles/general';
 
-// Helpers
-import listenForClickEvents from 'Helpers/listenForClickEvents';
-
 // Attach click event listener for toggling navbar
 listenForClickEvents();
+
+const Home = asyncLoader(() => import(/* webpackChunkName: "home" */'Pages/Home'));
+const Dashboard = asyncLoader(() => import(/* webpackChunkName: "dashboard" */'Pages/Dashboard'));
+const Login = asyncLoader(() => import(/* webpackChunkName: "login" */'Pages/Login'));
+const Signup = asyncLoader(() => import(/* webpackChunkName: "signup" */'Pages/Signup'));
 
 const App = () => (
   <BrowserRouter>
