@@ -15,19 +15,18 @@ import logo from '../../assets/img/logormww.png';
 import 'Styles/login.scss';
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: '',
-    isSuccess: false
-  };
-
   componentDidMount() {
     // if user was redirected due to failed authentication
     // display a login message
     if (window.location.search.substr(1) === 'rd') {
-      this.updateStateMessages(['Please login']);
+      this.updateStateMessages(['Please login'], false);
     }
   }
+
+  state = {
+    email: '',
+    password: ''
+  };
 
   handleChange = (event) => {
     const { target } = event;
@@ -38,20 +37,21 @@ class Login extends Component {
     });
   }
 
-  updateStateMessages = (array) => {
+  updateStateMessages = (array, bool) => {
     const { updateMessages } = this.props;
 
-    updateMessages(array);
+    updateMessages({ messages: array, isSuccess: bool });
 
     return setTimeout(() => {
-      updateMessages([]);
+      updateMessages({ messages: [], isSuccess: true });
     }, 4000);
   }
 
   validateFormData = (formData) => {
     const errors = [];
     const { email, password } = formData;
-    const emailRegex = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+    const emailRegex =
+      /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!emailRegex.test(email)) {
       errors.push('Valid email address required');
@@ -73,7 +73,7 @@ class Login extends Component {
     const outcome = this.validateFormData(this.state);
     // If errors exist, update state
     if (outcome) {
-      return this.updateStateMessages(outcome);
+      return this.updateStateMessages(outcome, false);
     }
     this.sendLoginRequest(this.state);
   }
@@ -87,8 +87,8 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, isSuccess } = this.state;
-    const { isLoading, messages } = this.props;
+    const { email, password } = this.state;
+    const { isLoading, message } = this.props;
 
     return (
       <div className="banner banner-login">
@@ -99,9 +99,8 @@ class Login extends Component {
             </Link>
           </nav>
           <MessageDiv
-            messages={messages}
-            isSuccess={isSuccess}
-            style={{ opacity: messages.lenth ? '0' : '1' }}
+            message={message}
+            style={{ opacity: message.messages.lenth ? '0' : '1' }}
           />
           <div className="content-wrapper">
             <div className="form-header text-center">
@@ -135,19 +134,21 @@ Login.propTypes = {
   loading: PropTypes.func.isRequired,
   updateMessages: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  messages: PropTypes.arrayOf.isRequired
+  message: PropTypes.shape.isRequired
 };
 
 const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   isLoading: state.isLoading,
-  messages: state.messages
+  message: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
-  processLogin: (userData, history, authType) => dispatch(authAction(userData, history, authType)),
+  processLogin: (userData, history, authType) => dispatch(
+    authAction(userData, history, authType)
+  ),
   loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: message => dispatch(messagesAction(message))
+  updateMessages: messageObject => dispatch(messagesAction(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

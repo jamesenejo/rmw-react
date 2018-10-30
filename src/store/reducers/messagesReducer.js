@@ -1,4 +1,6 @@
-const messagesReducer = (state = [], action) => {
+const initialState = { messages: [], isSuccess: false };
+
+const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
   case 'UPDATE_MESSAGES':
     return action.payload;

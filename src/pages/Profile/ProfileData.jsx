@@ -82,7 +82,7 @@ const ProfileData = (props) => {
           </div>
         </div>
         <div className="btn-container">
-          <Link to="/edit">Edit</Link>
+          <Link to="/profile/edit">Edit</Link>
         </div>
       </div>
     </div>

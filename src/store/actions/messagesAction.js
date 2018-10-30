@@ -6,6 +6,6 @@ const {
 } = constants;
 
 
-export default arrayOfMessages => dispatch => dispatch(
-  commonAction(UPDATE_MESSAGES, arrayOfMessages)
+export default payload => dispatch => dispatch(
+  commonAction(UPDATE_MESSAGES, payload)
 );
