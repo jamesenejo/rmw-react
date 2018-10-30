@@ -17,12 +17,11 @@ class Signup extends Component {
     firstname: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    isSuccess: false
+    confirmPassword: ''
   };
 
-  handleChange = (event) => {
-    const { target } = event;
+  handleChange = (e) => {
+    const { target } = e;
     const { value, name } = target;
 
     this.setState({
@@ -30,14 +29,14 @@ class Signup extends Component {
     });
   }
 
-  updateStateMessages = (array) => {
+  updateStateMessages = (array, bool) => {
     const { updateMessages } = this.props;
     // display (update global state) with error messages
-    updateMessages(array);
+    updateMessages({ messages: array, isSuccess: bool });
 
     // remove message from display after 4 seconds
     return setTimeout(() => {
-      updateMessages([]);
+      updateMessages({ messages: [], isSuccess: false });
     }, 4000);
   }
 
@@ -46,12 +45,17 @@ class Signup extends Component {
     const {
       firstname, email, password, confirmPassword
     } = formData;
+    const emailRegex =
+      /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!firstname || firstname.trim() === '') {
       errors.push('First name is required');
     }
     if (!email || email.trim() === '') {
-      errors.push('Invalid email');
+      errors.push('Email is required');
+    }
+    if (!emailRegex.test(email)) {
+      errors.push('Email address is invalid');
     }
     if (!password || password.trim() === '') {
       errors.push('Password is required');
@@ -75,7 +79,7 @@ class Signup extends Component {
     const outcome = this.validateFormData(this.state);
     // If errors exist, update state
     if (outcome) {
-      return this.updateStateMessages(outcome);
+      return this.updateStateMessages(outcome, false);
     }
     // else send signup request
     loading(true); // activate loading spinner
@@ -98,10 +102,10 @@ class Signup extends Component {
 
   render() {
     const {
-      firstname, email, password, confirmPassword, isSuccess
+      firstname, email, password, confirmPassword
     } = this.state;
 
-    const { isLoading, messages } = this.props;
+    const { isLoading, message } = this.props;
 
     return (
       <div className="banner banner-signup">
@@ -112,9 +116,8 @@ class Signup extends Component {
             </Link>
           </nav>
           <MessageDiv
-            messages={messages}
-            isSuccess={isSuccess}
-            style={{ opacity: messages.lenth ? '0' : '1' }}
+            message={message}
+            style={{ opacity: message.messages.lenth ? '0' : '1' }}
           />
           <div className="content-wrapper">
             <div className="form">
@@ -151,19 +154,21 @@ Signup.propTypes = {
   loading: PropTypes.func.isRequired,
   updateMessages: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  messages: PropTypes.arrayOf.isRequired
+  message: PropTypes.arrayOf.isRequired
 };
 
 const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   isLoading: state.isLoading,
-  messages: state.messages
+  message: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
-  processSignup: (userData, history, authType) => dispatch(authAction(userData, history, authType)),
+  processSignup: (userData, history, authType) => dispatch(
+    authAction(userData, history, authType)
+  ),
   loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: message => dispatch(messagesAction(message))
+  updateMessages: messageObject => dispatch(messagesAction(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

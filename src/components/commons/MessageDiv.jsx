@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MessageDiv = (props) => {
-  const { messages, isSuccess } = props;
+  const { message: { messages, isSuccess } } = props;
 
   return (
     <div id="message">
@@ -19,8 +19,7 @@ const MessageDiv = (props) => {
 };
 
 MessageDiv.propTypes = {
-  messages: PropTypes.array.isRequired,
-  isSuccess: PropTypes.bool.isRequired
+  message: PropTypes.shape.isRequired
 };
 
 export default MessageDiv;

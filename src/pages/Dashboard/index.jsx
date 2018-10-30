@@ -19,8 +19,6 @@ import 'Styles/ride-offer-general';
 import 'Styles/dashboard';
 
 class Dashboard extends Component {
-  state = {}
-
   componentDidMount() {
     const { updateUser, updateDasboard, history } = this.props;
 
@@ -28,21 +26,23 @@ class Dashboard extends Component {
     updateDasboard(history);
   }
 
-  updateStateMessages = (array) => {
+  state = {}
+
+  updateStateMessages = (array, bool) => {
     const { updateMessages } = this.props;
     // display messages
-    updateMessages(array);
+    updateMessages({ messages: array, isSuccess: bool });
 
     // clear messages
     return setTimeout(() => {
-      updateMessages([]);
+      updateMessages({ messages: [], isSuccess: false });
     }, 4000);
   }
 
   render() {
     const {
       isLoggedIn,
-      messages,
+      message,
       user,
       userDash: { runningOffer, runningJoinRequest }
     } = this.props;
@@ -55,13 +55,12 @@ class Dashboard extends Component {
           user={user}
         />
         <MessageDiv
-          messages={messages}
-          isSuccess={false}
+          message={message}
         />
 
         {
-          completeness === '100%'
-            ? '' : (<ProfileCompletenessIndicator completeness={completeness} />)
+          completeness === '100%' ?
+            '' : (<ProfileCompletenessIndicator completeness={completeness} />)
         }
 
         <div className="dash-container">
@@ -74,16 +73,16 @@ class Dashboard extends Component {
                 <div className="sub-header">
                   <h4>Ride Offer</h4>
                 </div>
-                {!runningOffer
-                  ? <FontLoading /> : <RideOffer runningOffer={runningOffer} />}
+                {!runningOffer ?
+                  <FontLoading /> : <RideOffer runningOffer={runningOffer} />}
               </div>
               <div className="running-booking">
                 <div className="sub-header">
                   <h4>Ride Bookings</h4>
                 </div>
-                {!runningJoinRequest
-                  ? <FontLoading />
-                  : <RideBooking runningJoinRequest={runningJoinRequest} />}
+                {!runningJoinRequest ?
+                  <FontLoading /> :
+                  <RideBooking runningJoinRequest={runningJoinRequest} />}
               </div>
               <RideHistoryStat />
             </div>
@@ -100,7 +99,7 @@ Dashboard.propTypes = {
   updateDasboard: PropTypes.func.isRequired,
   updateMessages: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  messages: PropTypes.arrayOf.isRequired,
+  message: PropTypes.shape.isRequired,
   user: PropTypes.shape.isRequired,
   userDash: PropTypes.shape.isRequired
 };
@@ -108,7 +107,7 @@ Dashboard.propTypes = {
 const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   isLoading: state.isLoading,
-  messages: state.messages,
+  message: state.message,
   user: state.user,
   userDash: state.userDash
 });
@@ -116,7 +115,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateUser: history => dispatch(updateUserAction(history)),
   updateDasboard: history => dispatch(updateDashAction(history)),
-  updateMessages: arrayOfMessages => dispatch(messagesAction(arrayOfMessages))
+  updateMessages: messageObject => dispatch(messagesAction(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

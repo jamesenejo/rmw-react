@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import isLoggedIn from './isLoggedInReducer';
 import isLoading from './isLoadingReducer';
-import messages from './messagesReducer';
+import message from './messagesReducer';
 import user from './userReducer';
 import userDash from './userDashReducer';
 
@@ -9,7 +9,7 @@ import userDash from './userDashReducer';
 const rootReducer = combineReducers({
   isLoggedIn,
   isLoading,
-  messages,
+  message,
   user,
   userDash
 });
