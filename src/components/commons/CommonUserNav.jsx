@@ -58,7 +58,7 @@ const CommonUserNav = (props) => {
 };
 
 CommonUserNav.propTypes = {
-  imgUrl: PropTypes.object.isRequired
+  imgUrl: PropTypes.string.isRequired
 };
 
 export default CommonUserNav;

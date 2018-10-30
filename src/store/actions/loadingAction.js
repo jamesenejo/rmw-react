@@ -6,4 +6,4 @@ const {
 } = constants;
 
 
-export default data => dispatch => dispatch(commonAction(LOADING_STATUS, data));
+export default bool => dispatch => dispatch(commonAction(LOADING_STATUS, bool));

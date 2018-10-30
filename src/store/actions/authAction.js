@@ -8,8 +8,9 @@ const {
 } = constants;
 
 
-export default (userData, history, authType) => (dispatch) => {
-  window.fetch(`http://localhost:7000/api/v1/auth/${authType}`, {
+export default (userData, history, authType) => dispatch => window.fetch(
+  `http://localhost:7000/api/v1/auth/${authType}`,
+  {
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {
@@ -17,32 +18,32 @@ export default (userData, history, authType) => (dispatch) => {
       'Content-Type': 'application/json'
     },
     credentials: 'include'
-  })
-    .then(res => res.json())
-    .then((res) => {
-      if (res.status === 'fail') {
-        // keep loading status false
-        dispatch(commonAction(LOGIN_STATUS, false));
-        // send error message
-        dispatch(commonAction(UPDATE_MESSAGES, [res.message]));
-        // turn off spinner
-        dispatch(commonAction(LOADING_STATUS, false));
-        // clear messages
-        return setTimeout(() => {
-          dispatch(commonAction(UPDATE_MESSAGES, []));
-        }, 4000);
-      }
-      dispatch(commonAction(LOGIN_STATUS, true));
-      history.push('/dashboard');
-    })
-    .catch(() => {
-      dispatch(commonAction(LOGIN_STATUS, false)); // keep loading status false
-      dispatch(commonAction(UPDATE_MESSAGES, ['An error occurred'])); // send error message
-      dispatch(commonAction(LOADING_STATUS, false)); // turn off spinner
-
+  }
+)
+  .then(res => res.json())
+  .then((res) => {
+    if (res.status === 'fail') {
+      // keep loading status false
+      dispatch(commonAction(LOGIN_STATUS, false));
+      // send error message
+      dispatch(commonAction(UPDATE_MESSAGES, [res.message]));
+      // turn off spinner
+      dispatch(commonAction(LOADING_STATUS, false));
       // clear messages
       return setTimeout(() => {
         dispatch(commonAction(UPDATE_MESSAGES, []));
       }, 4000);
-    });
-};
+    }
+    dispatch(commonAction(LOGIN_STATUS, true));
+    history.push('/dashboard');
+  })
+  .catch(() => {
+    dispatch(commonAction(LOGIN_STATUS, false)); // maintain logout status
+    dispatch(commonAction(UPDATE_MESSAGES, ['An error occurred'])); // send error message
+    dispatch(commonAction(LOADING_STATUS, false)); // turn off spinner
+
+    // clear messages
+    return setTimeout(() => {
+      dispatch(commonAction(UPDATE_MESSAGES, []));
+    }, 4000);
+  });
