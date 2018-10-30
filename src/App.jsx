@@ -15,6 +15,7 @@ const Home = asyncLoader(() => import(/* webpackChunkName: "home" */'Pages/Home'
 const Dashboard = asyncLoader(() => import(/* webpackChunkName: "dashboard" */'Pages/Dashboard'));
 const Login = asyncLoader(() => import(/* webpackChunkName: "login" */'Pages/Login'));
 const Signup = asyncLoader(() => import(/* webpackChunkName: "signup" */'Pages/Signup'));
+const Profile = asyncLoader(() => import(/* webpackChunkName: "profile" */'Pages/Profile'));
 
 const App = () => (
   <BrowserRouter>
@@ -23,6 +24,7 @@ const App = () => (
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
+      <Route path="/profile" component={Profile} />
     </Switch>
   </BrowserRouter>
 );

@@ -10,7 +10,7 @@ export default history => dispatch => window.fetch(url, {
   credentials: 'include'
 })
   .then(res => res.json())
-  .then(res => {
+  .then((res) => {
     if (res.status === 'fail') {
       return history.push('/login?rd');
     }

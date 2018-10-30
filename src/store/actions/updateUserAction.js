@@ -15,9 +15,9 @@ export default history => dispatch => window.fetch(url, {
   .then(res => res.json())
   .then((res) => {
     if (res.status === 'fail') {
+      dispatch(commonAction(LOGIN_STATUS, false)); // maintain logout status
       return history.push('/login?rd');
     }
-    const { id, completeness, imgUrl } = res.data;
     dispatch(commonAction(LOGIN_STATUS, true)); // set user as logged in
-    dispatch(commonAction(SET_CURRENT_USER, { id, completeness, imgUrl }));
+    dispatch(commonAction(SET_CURRENT_USER, res.data));
   });

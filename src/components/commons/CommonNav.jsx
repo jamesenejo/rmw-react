@@ -36,7 +36,7 @@ class CommonNav extends Component {
   }
 
   render() {
-    const { isLoggedIn, imgUrl } = this.props;
+    const { isLoggedIn, user: { imgUrl } } = this.props;
     const { height } = this.state;
 
     return (
@@ -72,7 +72,7 @@ class CommonNav extends Component {
 
 CommonNav.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  imgUrl: PropTypes.string.isRequired
+  user: PropTypes.shape.isRequired
 };
 
 export default CommonNav;
