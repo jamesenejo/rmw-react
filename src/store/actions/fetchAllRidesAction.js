@@ -1,7 +1,7 @@
 import constants from '../constants';
 import commonAction from './commonAction';
 
-const url = 'http://localhost:7000/api/v1/rides';
+const url = 'https://api-rmw.herokuapp.com/api/v1/rides';
 const { FETCH_ALL_RIDES } = constants;
 
 

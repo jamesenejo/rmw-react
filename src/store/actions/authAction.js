@@ -14,7 +14,7 @@ export default (userData, history, authType) => dispatch => window.fetch(
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {
-      Accept: 'application/json',
+      "Accept": 'application/json',
       'Content-Type': 'application/json'
     },
     credentials: 'include'
