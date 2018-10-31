@@ -50,14 +50,8 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <CommonNav
-          isLoggedIn={isLoggedIn}
-          user={user}
-        />
-        <MessageDiv
-          message={message}
-        />
-
+        <CommonNav isLoggedIn={isLoggedIn} user={user} />
+        <MessageDiv message={message} />
         {
           completeness === '100%' ?
             '' : (<ProfileCompletenessIndicator completeness={completeness} />)

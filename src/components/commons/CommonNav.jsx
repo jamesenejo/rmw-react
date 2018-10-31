@@ -5,10 +5,6 @@ import logo from '../../assets/img/logormww.png';
 import CommonUserNav from './CommonUserNav';
 
 class CommonNav extends Component {
-  state = {
-    height: 'auto'
-  }
-
   componentDidMount() {
     // set height to zero on page load on a mobile screen
     if (window.screen.width <= 768) {
@@ -23,6 +19,10 @@ class CommonNav extends Component {
         this.setState({ height: 'auto' });
       }
     });
+  }
+
+  state = {
+    height: 'auto'
   }
 
   displayUlList = () => {

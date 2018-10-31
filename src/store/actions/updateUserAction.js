@@ -1,7 +1,7 @@
 import constants from '../constants';
 import commonAction from './commonAction';
 
-const url = 'http://localhost:7000/api/v1/users/profile';
+const url = 'https://api-rmw.herokuapp.com/api/v1/users/profile';
 const {
   SET_CURRENT_USER,
   LOGIN_STATUS
