@@ -6,7 +6,8 @@ const Rides = (props) => {
   const { rides } = props;
   return (
     <div className="view-offer" id="allRidesHook">
-      {rides.length === 1 ? rides[0] : rides.map(ride => (
+      <div className="rides-header">All Ride offers</div>
+      {typeof rides[0] === 'string' ? rides[0] : rides.map(ride => (
         <Link to={`ride/${ride.id}`} className="ride-offer-wrapper" key={ride.id}>
           <div className="ride-offer">
             <div className="offer-details">
@@ -23,7 +24,7 @@ const Rides = (props) => {
               </div>
             </div>
             <div className="offer-price">
-              <h3>₦<span>{thePrice}</span></h3>
+              <h3>₦<span>{ride.price}</span></h3>
             </div>
           </div>
         </Link>
