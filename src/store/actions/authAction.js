@@ -26,12 +26,16 @@ export default (userData, history, authType) => dispatch => window.fetch(
       // keep loading status false
       dispatch(commonAction(LOGIN_STATUS, false));
       // send error message
-      dispatch(commonAction(UPDATE_MESSAGES, [res.message]));
+      dispatch(commonAction(UPDATE_MESSAGES, {
+        messages: [res.message], isSuccess: false
+      }));
       // turn off spinner
       dispatch(commonAction(LOADING_STATUS, false));
       // clear messages
       return setTimeout(() => {
-        dispatch(commonAction(UPDATE_MESSAGES, []));
+        dispatch(commonAction(UPDATE_MESSAGES, {
+          messages: [], isSuccess: false
+        }));
       }, 4000);
     }
     dispatch(commonAction(LOGIN_STATUS, true));
@@ -39,7 +43,9 @@ export default (userData, history, authType) => dispatch => window.fetch(
   })
   .catch(() => {
     dispatch(commonAction(LOGIN_STATUS, false)); // maintain logout status
-    dispatch(commonAction(UPDATE_MESSAGES, ['An error occurred'])); // send error message
+    dispatch(commonAction(UPDATE_MESSAGES, {
+      messages: ['An error occurred'], isSuccess: false
+    })); // send error message
     dispatch(commonAction(LOADING_STATUS, false)); // turn off spinner
 
     // clear messages
