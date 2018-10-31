@@ -29,7 +29,7 @@ class CommonNav extends Component {
     const { height } = this.state;
 
     if (height === 'auto' || height === '0') {
-      this.setState({ height: '170px' });
+      this.setState({ height: '210px' });
     } else {
       this.setState({ height: '0' });
     }
