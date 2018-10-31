@@ -5,7 +5,7 @@ const {
   LOGIN_STATUS
 } = constants;
 
-const url = 'http://localhost:7000/api/v1/users/profile';
+const url = 'https://api-rmw.herokuapp.com/api/v1/users/profile';
 
 
 export default () => dispatch => window.fetch(url, {

@@ -17,6 +17,7 @@ const Login = asyncLoader(() => import(/* webpackChunkName: "login" */'Pages/Log
 const Signup = asyncLoader(() => import(/* webpackChunkName: "signup" */'Pages/Signup'));
 const Profile = asyncLoader(() => import(/* webpackChunkName: "profile" */'Pages/Profile'));
 const EditProfile = asyncLoader(() => import(/* webpackChunkName: "editprofile" */'Pages/EditProfile'));
+const Upload = asyncLoader(() => import(/* webpackChunkName: "upload" */'Pages/Upload'));
 
 const App = () => (
   <BrowserRouter>
@@ -26,6 +27,7 @@ const App = () => (
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/profile/edit" component={EditProfile} />
+      <Route path="/profile/upload" component={Upload} />
       <Route path="/profile" component={Profile} />
     </Switch>
   </BrowserRouter>

@@ -9,7 +9,7 @@ const {
 
 
 export default (userData, history, authType) => dispatch => window.fetch(
-  `http://localhost:7000/api/v1/auth/${authType}`,
+  `https://api-rmw.herokuapp.com/api/v1/auth/${authType}`,
   {
     method: 'POST',
     body: JSON.stringify(userData),

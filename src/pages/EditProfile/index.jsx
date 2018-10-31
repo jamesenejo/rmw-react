@@ -34,15 +34,6 @@ class EditProfile extends Component {
 
   state = {}
 
-  handleChange = (e) => {
-    const { target } = e;
-    const { value, name } = target;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
   getValues = () => ({
     firstname: this.firstnameRef.current.value,
     lastname: this.lastnameRef.current.value,
@@ -141,8 +132,6 @@ class EditProfile extends Component {
     } = this.props;
     const { completeness } = user;
 
-    console.log('>>>', message);
-
     return (
       <div>
         <CommonNav
@@ -174,7 +163,6 @@ class EditProfile extends Component {
                   cityRef={this.cityRef}
                   stateRef={this.stateRef}
                   loading={isLoading}
-                  handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                 />
               ) : <FontLoading />
