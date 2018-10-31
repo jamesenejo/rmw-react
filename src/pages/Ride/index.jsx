@@ -7,7 +7,7 @@ import FontLoading from 'Commons/FontLoading';
 import loginCheck from 'Actions/loginCheck';
 import fetchARideAction from 'Actions/fetchARideAction';
 import messagesAction from 'Actions/messagesAction';
-import RideDetails from './rideDetails';
+import RideDetails from './RideDetails';
 
 // style imports
 import 'Styles/ride-offer-general';
