@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import logoutAction from 'Actions/logoutAction';
 import PropTypes from 'prop-types';
 import logo from '../../assets/img/logormww.png';
 import CommonUserNav from './CommonUserNav';
@@ -35,6 +36,16 @@ class CommonNav extends Component {
     }
   }
 
+  logout = () => window.fetch('https://api-rmw.herokuapp.com/api/v1/auth/logout', {
+    method: 'POST',
+    credentials: 'include'
+  })
+    .then(res => res.json()).then((res) => {
+      if (res.status === 'success') {
+        return window.location.replace('https://rmw-react.herokuapp.com/login');
+      }
+    })
+
   render() {
     const { isLoggedIn, user: { imgUrl } } = this.props;
     const { height } = this.state;
@@ -60,7 +71,7 @@ class CommonNav extends Component {
               <li className="navigation-li">
                 <Link to="/rides">Ride Offers</Link>
               </li>
-              <li className="navigation-li" id="logout">Log out</li>
+              <li className="navigation-li" id="logout" onClick={this.logout}>Log out</li>
             </ul>
           </div>
         </div>
@@ -71,6 +82,7 @@ class CommonNav extends Component {
 }
 
 CommonNav.propTypes = {
+  history: PropTypes.arrayOf.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   user: PropTypes.shape.isRequired
 };
