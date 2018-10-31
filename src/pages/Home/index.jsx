@@ -14,14 +14,14 @@ import 'Styles/ride-offer-general';
 import 'Styles/index';
 
 class Home extends Component {
-  state = {}
-
   componentDidMount() {
     const { checkLoginStatus } = this.props;
 
     // updates global state with user's login status
     checkLoginStatus();
   }
+
+  state = {}
 
   render() {
     const { isLoggedIn } = this.props;

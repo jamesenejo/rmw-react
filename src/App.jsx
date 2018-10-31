@@ -18,17 +18,19 @@ const Signup = asyncLoader(() => import(/* webpackChunkName: "signup" */'Pages/S
 const Profile = asyncLoader(() => import(/* webpackChunkName: "profile" */'Pages/Profile'));
 const EditProfile = asyncLoader(() => import(/* webpackChunkName: "editprofile" */'Pages/EditProfile'));
 const Upload = asyncLoader(() => import(/* webpackChunkName: "upload" */'Pages/Upload'));
+const AllRides = asyncLoader(() => import(/* webpackChunkName: "allrides" */'Pages/AllRides'));
 
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/profile/edit" component={EditProfile} />
       <Route path="/profile/upload" component={Upload} />
       <Route path="/profile" component={Profile} />
+      <Route path="/rides" component={AllRides} />
+      <Route exact path="/" component={Home} />
     </Switch>
   </BrowserRouter>
 );

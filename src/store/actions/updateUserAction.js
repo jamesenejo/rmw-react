@@ -18,7 +18,6 @@ export default history => dispatch => window.fetch(url, {
       dispatch(commonAction(LOGIN_STATUS, false)); // maintain logout status
       return history.push('/login?rd');
     }
-    console.log(res.data);
     dispatch(commonAction(LOGIN_STATUS, true)); // set user as logged in
     dispatch(commonAction(SET_CURRENT_USER, res.data));
   });

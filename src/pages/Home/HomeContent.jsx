@@ -20,7 +20,7 @@ const HomeContent = () => (
       </div>
     </div>
     <div className="btn-container">
-      <Link to="#refBestRideOffers">See ride offers</Link>
+      <Link to="/rides">See all ride offers</Link>
     </div>
   </div>
 );

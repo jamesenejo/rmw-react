@@ -2,6 +2,7 @@
     width: 60%;
     margin: auto;
     padding: 20px 0 50px;
+    text-align: center;
 }
 .view-offer a {
     color: rgb(0,30,80);
@@ -16,9 +17,6 @@
 }
 .ride-offer-wrapper {
     width: 100%;
-}
-.user-navigation {
-    display: none;
 }
 
 @media screen and (max-width: 768px) {

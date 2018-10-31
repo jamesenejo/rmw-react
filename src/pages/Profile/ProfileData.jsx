@@ -18,7 +18,7 @@ const ProfileData = (props) => {
             <img src={imgUrl || defaultAvatar} alt="User avatar" />
           </div>
           <div className="btn-container">
-            <Link to="/upload">Change image</Link>
+            <Link to="/profile/upload">Change image</Link>
           </div>
         </div>
         <CompletenessBar completeness={completeness} />

@@ -4,6 +4,7 @@ import isLoading from './isLoadingReducer';
 import message from './messagesReducer';
 import user from './userReducer';
 import userDash from './userDashReducer';
+import rides from './ridesReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   isLoading,
   message,
   user,
-  userDash
+  userDash,
+  rides
 });
 
 export default rootReducer;
