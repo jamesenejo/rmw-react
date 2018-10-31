@@ -5,6 +5,7 @@ import message from './messagesReducer';
 import user from './userReducer';
 import userDash from './userDashReducer';
 import rides from './ridesReducer';
+import ride from './rideReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   message,
   user,
   userDash,
-  rides
+  rides,
+  ride
 });
 
 export default rootReducer;

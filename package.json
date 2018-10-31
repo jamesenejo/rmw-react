@@ -11,12 +11,6 @@
     "start": "node ./dist/server.js",
     "start_dev": "npm run buildDev && npm start"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-    }
-  },
   "author": "Enejo James",
   "license": "ISC",
   "dependencies": {
