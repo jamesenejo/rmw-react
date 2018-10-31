@@ -58,7 +58,7 @@ class CommonNav extends Component {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li className="navigation-li">
-                <Link to="/all-offers">Ride Offers</Link>
+                <Link to="/rides">Ride Offers</Link>
               </li>
               <li className="navigation-li" id="logout">Log out</li>
             </ul>

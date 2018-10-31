@@ -55,7 +55,7 @@ class ProfileCompletenessIndicator extends Component {
           style={{ display, opacity }}
         >
           <p>Profile completeness:</p>
-          <Link to="/edit">Update</Link>
+          <Link to="/profile/edit">Update</Link>
         </div>
       </div>
     );

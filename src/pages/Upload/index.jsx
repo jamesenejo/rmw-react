@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
-import FontLoading from 'Commons/FontLoading';
 import updateUserAction from 'Actions/updateUserAction';
 import messagesAction from 'Actions/messagesAction';
 import imageUploadAction from 'Actions/imageUploadAction';
