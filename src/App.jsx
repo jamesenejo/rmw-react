@@ -19,6 +19,7 @@ const Profile = asyncLoader(() => import(/* webpackChunkName: "profile" */'Pages
 const EditProfile = asyncLoader(() => import(/* webpackChunkName: "editprofile" */'Pages/EditProfile'));
 const Upload = asyncLoader(() => import(/* webpackChunkName: "upload" */'Pages/Upload'));
 const AllRides = asyncLoader(() => import(/* webpackChunkName: "allrides" */'Pages/AllRides'));
+const Ride = asyncLoader(() => import(/* webpackChunkName: "create" */'Pages/Ride'));
 const Create = asyncLoader(() => import(/* webpackChunkName: "create" */'Pages/Create'));
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
       <Route path="/profile/upload" component={Upload} />
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Create} />
+      <Route path="/rides/:rideId" component={Ride} />
       <Route path="/rides" component={AllRides} />
       <Route exact path="/" component={Home} />
     </Switch>

@@ -443,6 +443,12 @@ footer h3 {
     }
 }
 
+@media screen and (max-width: 830px) {
+    .navigation-form {
+        margin-right: 30px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .navigation-form {
         margin-right: 10px;
@@ -513,5 +519,18 @@ footer h3 {
     }
     #message {
         width: 96%;
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .navigation-form button {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .user-navigation {
+        padding: 2px;
+        overflow-x: scroll;
     }
 }

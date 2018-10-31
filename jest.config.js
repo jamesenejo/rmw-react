@@ -13,5 +13,9 @@ module.exports = {
     '^Helpers(.*)$': '<rootDir>/src/helpers$1',
     '^Styles(.*)$': '<rootDir>/src/styles$1'
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/']
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  collectCoverageFrom: [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**"
+  ]
 };
