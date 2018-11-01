@@ -8,29 +8,21 @@ import "isomorphic-fetch";
 import "es6-promise";
 
 import mockReduxState from '../../../mockReduxState';
-import Dashboard from './index';
+import Login from './index';
 
 const mockStore = configureMockStore([thunk]);
-const store = mockStore(mockReduxState);
 
-describe('Home Tests', () => {
+let store = mockStore(mockReduxState);
+
+describe('Login page', () => {
   const wrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <Dashboard />
+        <Login />
       </BrowserRouter>
     </Provider>
   );
-  it('Mount the Dashboard', () => {
+  it('Mount the Login page', () => {
     expect(wrapper.exists()).toBe(true);
-  });
-  it('Displays Ride summary div', () => {
-    expect(wrapper.find('#rideSummary').exists()).toBe(true);
-  });
-  it('Displays Ride bookings div', () => {
-    expect(wrapper.find('#rideBooking').exists()).toBe(true);
-  });
-  it('Displays Ride statistics div', () => {
-    expect(wrapper.find('.history').exists()).toBe(true);
   });
 });

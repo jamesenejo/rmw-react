@@ -36,7 +36,7 @@ const RideDetails = (props) => {
               <span>Driver</span>
             </div>
             <div className="item-details">
-              <Link to="/user/">
+              <Link to={`/users/${driver.id}`}>
                 <span>{driver.firstname} {driver.lastname}</span>
               </Link>
             </div>

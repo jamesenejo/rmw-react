@@ -9,10 +9,5 @@ module.exports = merge(common, {
   devtool: '#source-map',
   plugins: [
     new webpack.NoEmitOnErrorsPlugin()
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, './dist'),
-    port: 8080,
-    historyApiFallback: true
-  }
+  ]
 });
