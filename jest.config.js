@@ -1,5 +1,5 @@
 module.exports = {
-  setupFiles: ['<rootDir>/tests/setup.js'],
+  setupFiles: ['<rootDir>/setup.js'],
   moduleFileExtensions: ['js', 'jsx', 'scss'],
   transform: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
@@ -7,15 +7,12 @@ module.exports = {
     '^.+\\.(js|jsx)?$': 'babel-jest'
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/client/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
     '^Actions(.*)$': '<rootDir>/src/store/actions$1',
     '^Commons(.*)$': '<rootDir>/src/components/commons$1',
     '^Helpers(.*)$': '<rootDir>/src/helpers$1',
     '^Styles(.*)$': '<rootDir>/src/styles$1'
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-  collectCoverageFrom: [
-    "**/*.{js,jsx}",
-    "!**/node_modules/**"
-  ]
+  collectCoverageFrom: ["**/src/**"]
 };

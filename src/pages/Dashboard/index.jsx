@@ -12,7 +12,6 @@ import updateDashAction from 'Actions/updateDashAction';
 import RideOffer from './RideOffer';
 import RideBooking from './RideBooking';
 import RideHistoryStat from './RideHistoryStat';
-import RideHistory from './RideHistory';
 
 // style imports
 import 'Styles/ride-offer-general';
@@ -89,7 +88,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   updateUser: PropTypes.func.isRequired,
-  history: PropTypes.arrayOf.isRequired,
+  history: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateDasboard: PropTypes.func.isRequired,
   updateMessages: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,

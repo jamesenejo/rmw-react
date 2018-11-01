@@ -8,7 +8,7 @@ const Rides = (props) => {
     <div className="view-offer" id="allRidesHook">
       <div className="rides-header">All Ride offers</div>
       {typeof rides[0] === 'string' ? rides[0] : rides.map(ride => (
-        <Link to={`ride/${ride.id}`} className="ride-offer-wrapper" key={ride.id}>
+        <Link to={`rides/${ride.id}`} className="ride-offer-wrapper" key={ride.id}>
           <div className="ride-offer">
             <div className="offer-details">
               <div className="from">
