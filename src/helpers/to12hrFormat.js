@@ -4,21 +4,21 @@ const to12hrFormat = (timeToConvert) => {
   const timeArray = timeToConvert.split(':');
   const [splittedHour, minute] = timeArray;
 
-  if (splittedHour === '00') {
+  if (parseInt(splittedHour, 10) === 0) {
     hour = '12';
     amOrpm = 'AM';
-  } else if (splittedHour === '12') {
-    hour = splittedHour;
+  } else if (parseInt(splittedHour, 10) === 12) {
+    hour = parseInt(splittedHour, 10);
     amOrpm = 'PM';
-  } else if (splittedHour > '12') {
-    hour = splittedHour - 12;
+  } else if (parseInt(splittedHour, 10) > 12) {
+    hour = parseInt(splittedHour, 10) - 12;
     amOrpm = 'PM';
   } else {
-    hour = splittedHour;
+    hour = parseInt(splittedHour, 10);
     amOrpm = 'AM';
   }
 
-  const timeIn12hrFormat = `${hour}: ${minute} ${amOrpm}`;
+  const timeIn12hrFormat = `${hour}:${minute} ${amOrpm}`;
 
   return timeIn12hrFormat;
 };

@@ -14,7 +14,7 @@ const RideBooking = (props) => {
         (
           <p className="no-running">
             {runningJoinRequest}
-            <Link to="/create" className="no-running-ref"> Join a ride</Link>
+            <Link to="/rides" className="no-running-ref"> Join a ride</Link>
           </p>
         ) :
         (

@@ -1,11 +1,5 @@
-const userDashReducer = (state = {}, action) => {
-  switch (action.type) {
-  case 'UPDATE_DASHBOARD':
-    return action.payload;
-    break;
-  default:
-    return state;
-  }
-};
+const userDashReducer = (state = {}, action) => (
+  action.type === 'UPDATE_DASHBOARD' ? action.payload : state
+);
 
 export default userDashReducer;

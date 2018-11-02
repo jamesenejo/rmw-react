@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RideHistoryStat = (props) => {
-  const { someProps } = props;
-
   return (
     <div className="history">
       <div className="header">

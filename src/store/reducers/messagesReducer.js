@@ -1,14 +1,7 @@
-const initialState = { messages: [], isSuccess: true };
+const initialState = { messages: [], isSuccess: false };
 
-const messagesReducer = (state = initialState, action) => {
-  switch (action.type) {
-  case 'UPDATE_MESSAGES':
-    console.log(action.payload);
-    return action.payload;
-    break;
-  default:
-    return state;
-  }
-};
+const messagesReducer = (state = initialState, action) => (
+  action.type === 'UPDATE_MESSAGES' ? action.payload : state
+);
 
 export default messagesReducer;

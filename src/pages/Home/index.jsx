@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// actions
-import loginCheck from 'Actions/loginCheck';
+// Thunks
+import loginCheck from 'Thunks/loginCheck';
 
 // Relative imports
 import HomeNav from './HomeNav';
@@ -29,7 +29,7 @@ class Home extends Component {
     return (
       <div className="banner banner-home">
         <div className="tint">
-          <HomeNav userLoginStatus={isLoggedIn} />
+          <HomeNav isLoggedIn={isLoggedIn} />
           <HomeContent />
         </div>
       </div>

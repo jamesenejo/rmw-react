@@ -8,21 +8,22 @@ import "isomorphic-fetch";
 import "es6-promise";
 
 import mockReduxState from '../../../mockReduxState';
-import EditProfile from './index';
+import Ride from './index';
 
 const mockStore = configureMockStore([thunk]);
 
 let store = mockStore(mockReduxState);
+const match = { params: { rideId: '1' } }
 
-describe('EditProfile page', () => {
+describe('Ride page', () => {
   const wrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <EditProfile />
+        <Ride match={match} />
       </BrowserRouter>
     </Provider>
   );
-  it('Mount the EditProfile page', () => {
+  it('Mount the Profile page', () => {
     expect(wrapper.exists()).toBe(true);
   });
 });

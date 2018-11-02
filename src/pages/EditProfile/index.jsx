@@ -6,10 +6,10 @@ import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
 import FontLoading from 'Commons/FontLoading';
 import ProfileCompletenessIndicator from 'Commons/ProfileCompletenessIndicator';
-import loadingAction from 'Actions/loadingAction';
-import messagesAction from 'Actions/messagesAction';
-import updateUserAction from 'Actions/updateUserAction';
-import editProfileAction from 'Actions/editProfileAction';
+import loading from 'Thunks/loading';
+import messages from 'Thunks/messages';
+import updateUser from 'Thunks/updateUser';
+import editProfile from 'Thunks/editProfile';
 import EditForm from './EditForm';
 
 // style imports
@@ -49,7 +49,6 @@ class EditProfile extends Component {
     const { loading, processUpdate, history } = this.props;
 
     const formData = this.getValues();
-
     // Run validations
     const outcome = this.validateFormData(formData);
     // If errors exist, update state
@@ -64,7 +63,7 @@ class EditProfile extends Component {
   updateStateMessages = (array, bool) => {
     const { updateMessages } = this.props;
     // display (update global state) with error messages
-    updateMessages({ messages: [], isSuccess: bool });
+    updateMessages({ messages: array, isSuccess: bool });
 
     // remove message from display after 4 seconds
     return setTimeout(() => {
@@ -109,21 +108,6 @@ class EditProfile extends Component {
       return errors;
     }
     return false;
-  }
-
-  sendUpdateRequest = (userData) => {
-    const { processUpdate, history } = this.props;
-    const {
-      firstname, lastname, email, gender, phone, city, state
-    } = userData;
-    debugger;
-
-    const profileData = {
-      firstname, lastname, email, gender, phone, city, state
-    };
-
-    // send request to api
-    return processUpdate(profileData, history);
   }
 
   render() {
@@ -196,11 +180,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   processUpdate: (userData, history) => dispatch(
-    editProfileAction(userData, history)
+    editProfile(userData, history)
   ),
-  updateUser: history => dispatch(updateUserAction(history)),
-  loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  updateUser: history => dispatch(updateUser(history)),
+  loading: bool => dispatch(loading(bool)),
+  updateMessages: messageObject => dispatch(messages(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

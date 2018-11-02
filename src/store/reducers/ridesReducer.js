@@ -1,11 +1,6 @@
-const ridesReducer = (state = [], action) => {
-  switch (action.type) {
-  case 'FETCH_ALL_RIDES':
-    return action.payload;
-    break;
-  default:
-    return state;
-  }
-};
+const ridesReducer = (state = [], action) => (
+  action.type === 'FETCH_ALL_RIDES' ? action.payload : state
+);
+
 
 export default ridesReducer;

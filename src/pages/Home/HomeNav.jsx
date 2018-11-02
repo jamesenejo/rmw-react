@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import logo from '../../assets/img/logormww.png';
 
 const HomeNav = (props) => {
-  const { userLoginStatus } = props;
+  const { isLoggedIn } = props;
 
   return (
     <nav className="navigation-bar">
@@ -12,7 +12,7 @@ const HomeNav = (props) => {
         <img src={logo} alt="Logo" />
       </Link>
       <div className="navigation">
-        {userLoginStatus ? (
+        {isLoggedIn ? (
           <ul className="navigation-ul">
             <li className="navigation-li">
               <Link to="/dashboard">Dashboard</Link>
@@ -32,7 +32,7 @@ const HomeNav = (props) => {
 };
 
 HomeNav.propTypes = {
-  userLoginStatus: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired
 };
 
 export default HomeNav;

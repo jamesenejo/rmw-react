@@ -8,21 +8,35 @@ import "isomorphic-fetch";
 import "es6-promise";
 
 import mockReduxState from '../../../mockReduxState';
-import Create from './index';
+import Home from './index';
+import HomeNav from './HomeNav';
 
 const mockStore = configureMockStore([thunk]);
 
 let store = mockStore(mockReduxState);
 
-describe('Create page', () => {
+describe('Home pages', () => {
   const wrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <Create />
+        <Home />
       </BrowserRouter>
     </Provider>
   );
-  it('Mount the Create page', () => {
+  it('Mount the Get all rides page', () => {
     expect(wrapper.exists()).toBe(true);
+  });
+});
+
+describe('Home pages', () => {
+  const wrapper = mount(
+    <Provider store={store}>
+      <BrowserRouter>
+        <HomeNav isLoggedIn />
+      </BrowserRouter>
+    </Provider>
+  );
+  it('should display dashboard and logout buttons when user is logged in', () => {
+    expect(wrapper.find('#logout').exists()).toEqual(true);
   });
 });

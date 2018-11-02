@@ -1,11 +1,5 @@
-const userReducer = (state = {}, action) => {
-  switch (action.type) {
-  case 'SET_CURRENT_USER':
-    return action.payload;
-    break;
-  default:
-    return state;
-  }
-};
+const userReducer = (state = {}, action) => (
+  action.type === 'SET_CURRENT_USER' ? action.payload : state
+);
 
 export default userReducer;

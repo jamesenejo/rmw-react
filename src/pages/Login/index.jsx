@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 // Relative imports
 import MessageDiv from 'Commons/MessageDiv';
-import authAction from 'Actions/authAction';
-import loadingAction from 'Actions/loadingAction';
-import messagesAction from 'Actions/messagesAction';
+import auth from 'Thunks/auth';
+import loading from 'Thunks/loading';
+import messages from 'Thunks/messages';
 import LoginForm from './LoginForm';
 import logo from '../../assets/img/logormww.png';
 
@@ -145,10 +145,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   processLogin: (userData, history, authType) => dispatch(
-    authAction(userData, history, authType)
+    auth(userData, history, authType)
   ),
-  loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  loading: bool => dispatch(loading(bool)),
+  updateMessages: messageObject => dispatch(messages(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

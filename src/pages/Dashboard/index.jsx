@@ -6,9 +6,8 @@ import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
 import FontLoading from 'Commons/FontLoading';
 import ProfileCompletenessIndicator from 'Commons/ProfileCompletenessIndicator';
-import messagesAction from 'Actions/messagesAction';
-import updateUserAction from 'Actions/updateUserAction';
-import updateDashAction from 'Actions/updateDashAction';
+import updateUser from 'Thunks/updateUser';
+import updateDash from 'Thunks/updateDash';
 import RideOffer from './RideOffer';
 import RideBooking from './RideBooking';
 import RideHistoryStat from './RideHistoryStat';
@@ -26,17 +25,6 @@ class Dashboard extends Component {
   }
 
   state = {}
-
-  updateStateMessages = (array, bool) => {
-    const { updateMessages } = this.props;
-    // display messages
-    updateMessages({ messages: array, isSuccess: bool });
-
-    // clear messages
-    return setTimeout(() => {
-      updateMessages({ messages: [], isSuccess: false });
-    }, 4000);
-  }
 
   render() {
     const {
@@ -77,8 +65,8 @@ class Dashboard extends Component {
                   <FontLoading /> :
                   <RideBooking runningJoinRequest={runningJoinRequest} />}
               </div>
-              <RideHistoryStat />
             </div>
+            <RideHistoryStat />
           </div>
         </div>
       </div>
@@ -90,7 +78,6 @@ Dashboard.propTypes = {
   updateUser: PropTypes.func.isRequired,
   history: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateDasboard: PropTypes.func.isRequired,
-  updateMessages: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   message: PropTypes.shape.isRequired,
   user: PropTypes.shape.isRequired,
@@ -106,9 +93,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: history => dispatch(updateUserAction(history)),
-  updateDasboard: history => dispatch(updateDashAction(history)),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  updateUser: history => dispatch(updateUser(history)),
+  updateDasboard: history => dispatch(updateDash(history))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

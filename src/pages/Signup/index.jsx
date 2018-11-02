@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import MessageDiv from 'Commons/MessageDiv';
-import authAction from 'Actions/authAction';
-import loadingAction from 'Actions/loadingAction';
-import messagesAction from 'Actions/messagesAction';
+import auth from 'Thunks/auth';
+import loading from 'Thunks/loading';
+import messages from 'Thunks/messages';
 import SignupForm from './SignupForm';
 
 import 'Styles/sign-up';
@@ -53,8 +53,7 @@ class Signup extends Component {
     }
     if (!email || email.trim() === '') {
       errors.push('Email is required');
-    }
-    if (!emailRegex.test(email)) {
+    } else if (!emailRegex.test(email)) {
       errors.push('Email address is invalid');
     }
     if (!password || password.trim() === '') {
@@ -165,10 +164,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   processSignup: (userData, history, authType) => dispatch(
-    authAction(userData, history, authType)
+    auth(userData, history, authType)
   ),
-  loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  loading: bool => dispatch(loading(bool)),
+  updateMessages: messageObject => dispatch(messages(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

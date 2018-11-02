@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
 import ProfileCompletenessIndicator from 'Commons/ProfileCompletenessIndicator';
-import loadingAction from 'Actions/loadingAction';
-import messagesAction from 'Actions/messagesAction';
-import updateUserAction from 'Actions/updateUserAction';
-import createAction from 'Actions/createAction';
+import loading from 'Thunks/loading';
+import messages from 'Thunks/messages';
+import updateUser from 'Thunks/updateUser';
+import create from 'Thunks/create';
 import CannotCreate from './CannotCreate';
 import CreateForm from './CreateForm';
 
@@ -184,11 +184,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   processCreate: (rideData, history) => dispatch(
-    createAction(rideData, history)
+    create(rideData, history)
   ),
-  updateUser: history => dispatch(updateUserAction(history)),
-  loading: bool => dispatch(loadingAction(bool)),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  updateUser: history => dispatch(updateUser(history)),
+  loading: bool => dispatch(loading(bool)),
+  updateMessages: messageObject => dispatch(messages(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);

@@ -26,7 +26,8 @@
     "max-depth": ["error", 5],
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/label-has-associated-control": 0,
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "max-nested-callbacks": "off"
   },
   "settings": {
     "import/resolver": "webpack"
