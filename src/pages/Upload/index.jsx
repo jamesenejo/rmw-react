@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import CommonNav from 'Commons/CommonNav';
 import MessageDiv from 'Commons/MessageDiv';
-import updateUserAction from 'Actions/updateUserAction';
-import messagesAction from 'Actions/messagesAction';
-import imageUploadAction from 'Actions/imageUploadAction';
+import updateUser from 'Thunks/updateUser';
+import messages from 'Thunks/messages';
+import imageUpload from 'Thunks/imageUpload';
 import defaultAvatar from '../../assets/img/user-avatar.jpg';
 
 // style imports
@@ -103,6 +103,8 @@ class Upload extends Component {
 
 Upload.propTypes = {
   updateUser: PropTypes.func.isRequired,
+  updateMessages: PropTypes.func.isRequired,
+  processUpload: PropTypes.func.isRequired,
   history: PropTypes.arrayOf.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   message: PropTypes.shape.isRequired,
@@ -118,11 +120,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: history => dispatch(updateUserAction(history)),
+  updateUser: history => dispatch(updateUser(history)),
   processUpload: (userData, history) => dispatch(
-    imageUploadAction(userData, history)
+    imageUpload(userData, history)
   ),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject))
+  updateMessages: messageObject => dispatch(messages(messageObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Upload);

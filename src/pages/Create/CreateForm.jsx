@@ -9,45 +9,45 @@ const CreateForm = (props) => {
       <div className="input-group">
         <div className="input-wrapper">
           <label htmlFor="fromState">State</label>
-          <input type="text" name="fromState" required onChange={handleChange} />
+          <input type="text" name="fromState" id="fromState" required onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="fromCity">City</label>
-          <input type="text" name="fromCity" required onChange={handleChange} />
+          <input type="text" name="fromCity" id="fromCity" required onChange={handleChange} />
         </div>
       </div>
       <div className="input-group">
         <div className="input-wrapper">
           <label htmlFor="toState">State</label>
-          <input type="text" name="toState" placeholder="Destination State" required onChange={handleChange} />
+          <input type="text" name="toState" id="toState" placeholder="Destination State" required onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="toCity">City</label>
-          <input type="text" name="toCity" placeholder="Destination City" required onChange={handleChange} />
+          <input type="text" name="toCity" id="toCity" placeholder="Destination City" required onChange={handleChange} />
         </div>
       </div>
       <div className="input-group">
         <div className="input-wrapper">
           <label htmlFor="departure">Departure Date</label>
-          <input type="date" name="departureDate" required onChange={handleChange} />
+          <input type="date" name="departureDate" id="departureDate" required onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="departure">Departure Time</label>
-          <input type="time" name="departureTime" required onChange={handleChange} />
+          <input type="time" name="departureTime" id="departureTime" required onChange={handleChange} />
         </div>
       </div>
       <div className="input-group">
         <div className="input-wrapper">
           <label htmlFor="price">Price (₦)</label>
-          <input type="number" name="price" placeholder="eg 2500" min="0" required onChange={handleChange} />
+          <input type="number" name="price" id="price" placeholder="eg 2500" min="0" required onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="seats">Seats</label>
-          <input type="number" name="seats" placeholder="eg 4" min="1" required onChange={handleChange} />
+          <input type="number" name="seats" id="seats" placeholder="eg 4" min="1" required onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="pickupLocation">Pick up location</label>
-          <input type="text" name="pickupLocation" required onChange={handleChange} />
+          <input type="text" name="pickupLocation" id="pickupLocation" required onChange={handleChange} />
         </div>
       </div>
       <div className="payment-information">

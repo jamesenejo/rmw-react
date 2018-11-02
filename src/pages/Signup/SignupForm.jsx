@@ -10,19 +10,19 @@ const SignupForm = (props) => {
     <div className="form-body">
       <form>
         <div className="input-wrapper">
-          <input type="text" name="firstname" placeholder="First Name" onChange={onChange} value={firstname} required />
+          <input type="text" name="firstname" id="firstname" placeholder="First Name" onChange={onChange} value={firstname} required />
         </div>
         <div className="input-wrapper">
-          <input type="email" name="email" placeholder="Email address" onChange={onChange} value={email} required />
+          <input type="email" name="email" id="email" placeholder="Email address" onChange={onChange} value={email} required />
         </div>
         <div className="input-wrapper">
-          <input type="password" name="password" placeholder="Password" onChange={onChange} value={password} required />
+          <input type="password" name="password" id="password" placeholder="Password" onChange={onChange} value={password} required />
         </div>
         <div className="input-wrapper">
-          <input type="password" name="confirmPassword" placeholder="Type password again" onChange={onChange} value={confirmPassword} required />
+          <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Type password again" onChange={onChange} value={confirmPassword} required />
         </div>
         <div className="btn-wrapper">
-          <button type="submit" className="form-btn" onClick={onClick}>
+          <button type="submit" className="form-btn" id="submit" onClick={onClick}>
               Sign Up
             <i className="fa fa-spinner fa-spin" id="spinner" style={{ opacity: loading ? '1' : '0' }} />
           </button>

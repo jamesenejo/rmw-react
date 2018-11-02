@@ -1,5 +1,5 @@
 import constants from '../constants';
-import commonAction from './commonAction';
+import action from '../action';
 
 const { FETCH_A_RIDE, UPDATE_MESSAGES } = constants;
 
@@ -11,9 +11,9 @@ export default id => dispatch => window.fetch(
   .then(res => res.json())
   .then((res) => {
     if (res.status === 'fail') {
-      return dispatch(commonAction(UPDATE_MESSAGES, {
+      return dispatch(action(UPDATE_MESSAGES, {
         messages: [res.message], isSuccess: false
       }));
     }
-    return dispatch(commonAction(FETCH_A_RIDE, res.data));
+    return dispatch(action(FETCH_A_RIDE, res.data));
   });

@@ -1,5 +1,5 @@
 import constants from '../constants';
-import commonAction from './commonAction';
+import action from '../action';
 
 const url = 'https://api-rmw.herokuapp.com/api/v1/users/dashboard';
 const { UPDATE_DASHBOARD } = constants;
@@ -14,5 +14,5 @@ export default history => dispatch => window.fetch(url, {
     if (res.status === 'fail') {
       return history.push('/login?rd');
     }
-    dispatch(commonAction(UPDATE_DASHBOARD, res.data));
+    dispatch(action(UPDATE_DASHBOARD, res.data));
   });

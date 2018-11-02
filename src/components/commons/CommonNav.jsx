@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logoutAction from 'Actions/logoutAction';
 import PropTypes from 'prop-types';
 import logo from '../../assets/img/logormww.png';
 import CommonUserNav from './CommonUserNav';
@@ -82,9 +81,8 @@ class CommonNav extends Component {
 }
 
 CommonNav.propTypes = {
-  history: PropTypes.arrayOf.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  user: PropTypes.shape.isRequired
+  user: PropTypes.object.isRequired
 };
 
 export default CommonNav;

@@ -1,11 +1,5 @@
-const isLoggedInReducer = (state = false, action) => {
-  switch (action.type) {
-  case 'LOGIN_STATUS':
-    return action.payload;
-    break;
-  default:
-    return state;
-  }
-};
+const isLoggedInReducer = (state = false, action) => (
+  action.type === 'LOGIN_STATUS' ? action.payload : state
+);
 
 export default isLoggedInReducer;

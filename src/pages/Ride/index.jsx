@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 import CommonNav from 'Commons/CommonNav';
 import FontLoading from 'Commons/FontLoading';
-import loginCheck from 'Actions/loginCheck';
-import fetchARideAction from 'Actions/fetchARideAction';
-import messagesAction from 'Actions/messagesAction';
+import loginCheck from 'Thunks/loginCheck';
+import fetchARide from 'Thunks/fetchARide';
 import RideDetails from './RideDetails';
 
 // style imports
@@ -30,7 +29,7 @@ class Ride extends Component {
     const { isLoggedIn, user, ride } = this.props;
 
     return (
-      <div>
+      <div className="single-ride">
         <CommonNav isLoggedIn={isLoggedIn} user={user} />
         <div className="view-offer" id="viewRideHook">
           {!ride.rideDetails ?
@@ -62,8 +61,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   checkLoginStatus: () => dispatch(loginCheck()),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject)),
-  fetchRide: id => dispatch(fetchARideAction(id))
+  fetchRide: id => dispatch(fetchARide(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ride);

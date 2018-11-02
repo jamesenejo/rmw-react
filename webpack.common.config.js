@@ -65,7 +65,7 @@ module.exports = {
     alias: {
       Root: path.resolve(__dirname),
       Helpers: path.resolve(__dirname, 'src/helpers/'),
-      Actions: path.resolve(__dirname, 'src/store/actions'),
+      Thunks: path.resolve(__dirname, 'src/store/thunks'),
       Pages: path.resolve(__dirname, 'src/pages/'),
       Styles: path.resolve(__dirname, 'src/styles/'),
       Images: path.resolve(__dirname, 'src/assets/img/'),

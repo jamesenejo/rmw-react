@@ -1,5 +1,5 @@
 import constants from '../constants';
-import commonAction from './commonAction';
+import action from '../action';
 
 const {
   LOGIN_STATUS,
@@ -14,8 +14,8 @@ export default () => dispatch => window.fetch(url, {
   credentials: 'include'
 }).then(res => res.json()).then((res) => {
   if (res.status === 'fail') {
-    return dispatch(commonAction(LOGIN_STATUS, false));
+    return dispatch(action(LOGIN_STATUS, false));
   }
-  dispatch(commonAction(SET_CURRENT_USER, res.data));
-  return dispatch(commonAction(LOGIN_STATUS, true));
+  dispatch(action(SET_CURRENT_USER, res.data));
+  return dispatch(action(LOGIN_STATUS, true));
 });

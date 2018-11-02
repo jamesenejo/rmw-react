@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 import CommonNav from 'Commons/CommonNav';
 import FontLoading from 'Commons/FontLoading';
-import loginCheck from 'Actions/loginCheck';
-import fetchAllRidesAction from 'Actions/fetchAllRidesAction';
-import messagesAction from 'Actions/messagesAction';
+import loginCheck from 'Thunks/loginCheck';
+import fetchAllRides from 'Thunks/fetchAllRides';
 import Rides from './Rides';
 
 // style imports
@@ -14,7 +13,7 @@ import 'Styles/ride-offer-general';
 import 'Styles/dashboard';
 import 'Styles/all-offers';
 
-class AllRides extends Component {
+export class AllRides extends Component {
   componentDidMount() {
     const { checkLoginStatus, fetchRides } = this.props;
 
@@ -59,8 +58,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   checkLoginStatus: () => dispatch(loginCheck()),
-  updateMessages: messageObject => dispatch(messagesAction(messageObject)),
-  fetchRides: () => dispatch(fetchAllRidesAction())
+  fetchRides: () => dispatch(fetchAllRides())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllRides);

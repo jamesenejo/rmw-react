@@ -8,21 +8,31 @@ import "isomorphic-fetch";
 import "es6-promise";
 
 import mockReduxState from '../../../mockReduxState';
-import Upload from './index';
+import Login from './index';
 
 const mockStore = configureMockStore([thunk]);
 
 let store = mockStore(mockReduxState);
 
-describe('Upload page', () => {
+describe('Login page', () => {
   const wrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <Upload />
+        <Login />
       </BrowserRouter>
     </Provider>
   );
-  it('Mount the Upload page', () => {
+  it('Mount the Login page', () => {
     expect(wrapper.exists()).toBe(true);
+  });
+  it('should dispatch message actions display errors', () => {
+    wrapper.find('#email').simulate('change', { target: { value: 'email@email.com' } });
+    wrapper.find('#password').simulate('change', { target: { value: 'pass' } });
+
+    wrapper.update()
+
+    const saveButton = wrapper.find('#submit');
+    saveButton.simulate('click');
+    expect(wrapper.find('#message').exists()).toBe(true);
   });
 });

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import CommonNav from 'Commons/CommonNav';
 import FontLoading from 'Commons/FontLoading';
-import updateUserAction from 'Actions/updateUserAction';
+import updateUser from 'Thunks/updateUser';
 import ProfileData from './ProfileData';
 
 // style imports
@@ -55,7 +55,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: history => dispatch(updateUserAction(history))
+  updateUser: history => dispatch(updateUser(history))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
