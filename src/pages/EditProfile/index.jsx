@@ -24,6 +24,23 @@ class EditProfile extends Component {
     updateUser(history);
   }
 
+  componentDidUpdate() {
+    const { updated } = this.state;
+    const { user } = this.props.state;
+
+    if (!updated && user.firstname) {
+      const {
+        firstname, lastname, email, gender, phone, city, state
+      } = user;
+
+      console.log(firstname);
+
+      this.setState({
+        firstname, lastname, email, gender, phone, city, state, updated: true
+      });
+    }
+  }
+
   firstnameRef = React.createRef();
   lastnameRef = React.createRef(); /* eslint-disable-line */
   emailRef = React.createRef(); /* eslint-disable-line */
@@ -32,7 +49,26 @@ class EditProfile extends Component {
   cityRef = React.createRef(); /* eslint-disable-line */
   stateRef = React.createRef(); /* eslint-disable-line */
 
-  state = {}
+  state = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    gender: '',
+    phone: '',
+    city: '',
+    state: '',
+    updated: false
+  }
+
+  handleChange = (e) => {
+    console.log('you');
+    const { target } = e;
+    const { value, name } = target;
+
+    this.setState({
+      [name]: value
+    });
+  }
 
   getValues = () => ({
     firstname: this.firstnameRef.current.value,
@@ -138,7 +174,7 @@ class EditProfile extends Component {
             {user ?
               (
                 <EditForm
-                  user={user}
+                  user={this.state}
                   firstnameRef={this.firstnameRef}
                   lastnameRef={this.lastnameRef}
                   emailRef={this.emailRef}
@@ -147,6 +183,7 @@ class EditProfile extends Component {
                   cityRef={this.cityRef}
                   stateRef={this.stateRef}
                   loading={isLoading}
+                  handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                 />
               ) : <FontLoading />
